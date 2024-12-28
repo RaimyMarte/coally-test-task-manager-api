@@ -5,9 +5,16 @@ const successResponse = require("../../response/successResponse");
 
 const getUserTasks = async (req, res) => {
     const userId = req.user._id
+    const { completed } = req.query
 
     try {
-        const tasks = await Task.find({ owner: userId })
+        const filter = { owner: userId };
+
+        if (completed === 'true' || completed === 'false') {
+            filter.completed = completed === 'true';
+        }
+
+        const tasks = await Task.find(filter);
 
         const { response } = successResponse({ data: tasks })
         res.json(response);

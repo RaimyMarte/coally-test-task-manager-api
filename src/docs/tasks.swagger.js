@@ -47,9 +47,18 @@
  * /api/tasks:
  *   get:
  *     summary: Obtener todas las tareas del usuario
- *     description: Devuelve todas las tareas asociadas al usuario autenticado.
+ *     description: Devuelve todas las tareas asociadas al usuario autenticado. Puede filtrar por estado de finalización utilizando el parámetro `completed`.
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: completed
+ *         required: false
+ *         description: Filtra las tareas por estado de finalización. Puede ser 'true', 'false' o 'all' para obtener todas las tareas sin importar su estado de finalización.
+ *         schema:
+ *           type: string
+ *           enum: [true, false, all]
+ *           example: all
  *     responses:
  *       200:
  *         description: Lista de tareas del usuario
@@ -81,6 +90,7 @@
  *       500:
  *         description: Error en el servidor
  */
+
 
 
 /**
