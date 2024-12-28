@@ -16,10 +16,17 @@ const swaggerOptions = {
                     scheme: 'bearer',
                     bearerFormat: 'JWT',
                 },
+                apiKeyAuth: {
+                    type: 'apiKey',
+                    in: 'header',
+                    name: 'ApiKey',
+                    description: 'Proporciona tu API key para autenticarte',
+                },
             },
         },
         security: [
             {
+                apiKeyAuth: [],
                 bearerAuth: [],
             },
         ],

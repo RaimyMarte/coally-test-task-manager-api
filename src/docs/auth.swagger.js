@@ -85,8 +85,6 @@
  *   post:
  *     summary: Cerrar sesión del usuario
  *     description: Cierra la sesión del usuario actual al invalidar su token.
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Cierre de sesión exitoso

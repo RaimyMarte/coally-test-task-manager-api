@@ -5,6 +5,7 @@ const taskRouter = require('./routers/task')
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerOptions = require('./swagger/swaggerOptions');
+const validateAPIKey = require('./middleware/validateAPIKey');
 
 require('dotenv').config()
 
@@ -19,6 +20,8 @@ app.use(cors())
 app.use(express.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use(validateAPIKey);
 
 app.use('/api/auth/', authRouter);
 app.use('/api/tasks/', taskRouter);
