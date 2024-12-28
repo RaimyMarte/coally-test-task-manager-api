@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Task = require('./task')
 
+require('dotenv').config()
+
 const secretJWTKey = process.env.SECRET_JWT_KEY || ''
 
 const userSchema = new mongoose.Schema({
