@@ -1,4 +1,5 @@
-const PORT = process.env.PORT || 3010;
+const port = process.env.PORT || 3010;
+const apiUrl = process.env.API_URL || `http://localhost:${port}`;
 
 const swaggerOptions = {
     definition: {
@@ -8,9 +9,23 @@ const swaggerOptions = {
             version: '1.0.0',
             description: 'Documentación de la API de tareas',
         },
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
+            },
+        ],
         servers: [
             {
-                url: `http://localhost:${PORT}`,
+                url: apiUrl,
             },
         ],
     },

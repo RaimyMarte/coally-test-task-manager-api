@@ -4,6 +4,8 @@
  *   post:
  *     summary: Crear una nueva tarea
  *     description: Crea una nueva tarea para el usuario autenticado.
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -87,6 +89,8 @@
  *   get:
  *     summary: Obtener una tarea específica
  *     description: Devuelve la tarea con el ID proporcionado si pertenece al usuario autenticado.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -109,6 +113,8 @@
  *   patch:
  *     summary: Actualizar una tarea
  *     description: Permite actualizar los detalles de una tarea del usuario autenticado.
+ *     security:
+ *      - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -148,6 +154,8 @@
  *   delete:
  *     summary: Eliminar una tarea
  *     description: Elimina una tarea específica del usuario autenticado.
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
