@@ -14,7 +14,10 @@ const register = async (req, res) => {
 
         await user.save()
 
-        const { response } = successResponse({ data: user })
+        const { response } = successResponse({
+            data: user,
+            message: 'Registro exitoso'
+        })
         res.json(response);
     } catch (error) {
         const { response } = errorResponse({ message: error.message, statusCode: res.statusCode })

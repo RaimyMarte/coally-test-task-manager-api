@@ -7,7 +7,10 @@ const logout = async (req, res) => {
 
         await req.user.save()
 
-        const { response } = successResponse({ data: null })
+        const { response } = successResponse({
+            data: null,
+            message: 'Cierre de sesión exitoso'
+        })
         res.json(response);
     } catch (error) {
         const { response } = errorResponse({ message: error.message, statusCode: res.statusCode })

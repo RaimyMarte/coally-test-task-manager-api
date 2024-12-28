@@ -12,10 +12,14 @@ const login = async (req, res) => {
                 user,
                 token
             },
+            message: 'Inicio de sesión exitoso'
         })
         res.json(response);
     } catch (error) {
-        const { response } = errorResponse({ message: error.message, statusCode: res.statusCode })
+        const { response } = errorResponse({
+            message: error.message,
+            statusCode: 401
+        });
         res.json(response);
     }
 }
