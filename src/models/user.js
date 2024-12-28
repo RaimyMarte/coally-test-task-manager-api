@@ -45,13 +45,12 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
-})
-
-userSchema.virtual('tasks', {
-    ref: 'Task',
-    localField: '_id',
-    foreignField: 'owner'
+    }],
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 })
 
 userSchema.methods.generateAuthToken = async function () {
@@ -69,12 +68,12 @@ userSchema.statics.findByCredentials = async (email, password) => {
     if (!user)
         throw new Error('Credenciales incorrectas')
 
-    const isMatch = bcrypt.compare(password, user.password)
+    const isMatch = await bcrypt.compare(password, user.password)
 
     if (!isMatch)
         throw new Error('Credenciales incorrectas')
-
-    return user
+    
+    return user;
 }
 
 
@@ -82,7 +81,7 @@ userSchema.pre('save', async function (next) {
     const user = this
 
     if (user.isModified('password')) {
-        user.password = bcrypt.hash(user.password, 8)
+        user.password = await bcrypt.hash(user.password, 8)
     }
 
     next()

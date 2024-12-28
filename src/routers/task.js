@@ -8,13 +8,13 @@ const deleteTask = require('../controllers/task/deleteTask')
 const router = new express.Router()
 
 
-router.post('/tasks', auth, createTask)
+router.post('/', auth, createTask)
 
-router.get('/tasks', auth, getUserTasks)
-router.get('/tasks/:id', auth, getTaskById)
+router.get('/', auth, getUserTasks)
+router.get('/:id', auth, getTaskById)
 
-router.patch('/tasks/:id', auth, updateTask)
-router.delete('/tasks/:id', auth, deleteTask)
+router.patch('/:id', auth, updateTask)
+router.delete('/:id', auth, deleteTask)
 
 module.exports = router
 

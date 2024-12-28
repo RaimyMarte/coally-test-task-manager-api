@@ -3,9 +3,13 @@ const errorResponse = require("../../response/errorResponse")
 const successResponse = require("../../response/successResponse")
 
 const login = async (req, res) => {
+    const { email, password } = req.body
     try {
-        const user = await User.findByCredentials(req.body.email, req.body.password)
+        const user = await User.findByCredentials(email, password)
         const token = await user.generateAuthToken()
+
+        user.password = undefined;
+        user.tokens = undefined;
 
         const { response } = successResponse({
             data: {

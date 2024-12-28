@@ -6,8 +6,8 @@ const register = require("../controllers/auth/register");
 
 const router = new express.Router()
 
-router.post('/users/register', register)
-router.post('/users/login', login)
-router.post('/users/logout', auth, logout)
+router.post('/register', register)
+router.post('/login', login)
+router.post('/logout', auth, logout)
 
 module.exports = router
