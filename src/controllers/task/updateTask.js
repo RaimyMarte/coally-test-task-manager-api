@@ -21,6 +21,7 @@ const updateTask = async (req, res) => {
             throw new Error('Esta tarea no existe')
 
         updateValues.forEach(key => task[key] = req.body[key])
+        task.lastUpdatedAt = Date.now();
 
         await task.save()
 
