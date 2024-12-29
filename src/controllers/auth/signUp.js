@@ -2,15 +2,19 @@ const User = require("../../models/user")
 const errorResponse = require("../../response/errorResponse")
 const successResponse = require("../../response/successResponse")
 
-const register = async (req, res) => {
+const signUp = async (req, res) => {
     const user = new User(req.body)
-    const { email } = req.body
+    const { email, password, confirmPassword } = req.body
 
     try {
-        const userByEmail = await User.findOne({ email })
+        const formattedEmail = email.toLowerCase().trim()
+        const userByEmail = await User.findOne({ email: formattedEmail })
 
         if (userByEmail)
-            throw new Error('El email ya está en uso')
+            throw new Error('El correo electrónico ya está en uso')
+
+        if (password !== confirmPassword)
+            throw new Error('Las contraseñas no coinciden')
 
         await user.save()
 
@@ -25,4 +29,4 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = register
+module.exports = signUp

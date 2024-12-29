@@ -4,8 +4,11 @@ const successResponse = require("../../response/successResponse")
 
 const login = async (req, res) => {
     const { email, password } = req.body
+    
     try {
-        const user = await User.findByCredentials(email, password)
+        const formattedEmail = email.toLowerCase().trim()
+
+        const user = await User.findByCredentials(formattedEmail, password)
         const token = await user.generateAuthToken()
 
         user.password = undefined;
