@@ -14,7 +14,8 @@ const getUserTasks = async (req, res) => {
             filter.completed = completed === 'true';
         }
 
-        const tasks = await Task.find(filter).sort({ createdAt: -1 });
+        const tasks = await Task.find(filter)
+            .sort({ completed: 1, createdAt: -1 });
 
         const { response } = successResponse({ data: tasks })
         res.json(response);
