@@ -12,7 +12,7 @@ const deleteTask = async (req, res) => {
         if (!task)
             throw new Error('Esta tarea no existe')
 
-        await task.remove();
+        await task.deleteOne();
 
         const { response } = successResponse({ data: null, message: 'Tarea eliminada con éxito' });
         res.status(200).json(response);
