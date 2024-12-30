@@ -1,7 +1,11 @@
-const port = process.env.PORT || 3010;
+import dotenv from 'dotenv';
+import { SwaggerOptions } from 'swagger-ui-express';
+dotenv.config()
+
+const port = process.env.PORT || '3010';
 const apiUrl = process.env.API_URL || `http://localhost:${port}`;
 
-const swaggerOptions = {
+export const swaggerOptions: SwaggerOptions = {
     definition: {
         openapi: '3.0.0',
         info: {
@@ -38,5 +42,3 @@ const swaggerOptions = {
     },
     apis: ['./src/docs/*.swagger.js'],
 };
-
-module.exports = swaggerOptions;

@@ -1,12 +1,21 @@
-const Task = require("../../models/task");
-const errorResponse = require("../../response/errorResponse");
-const successResponse = require("../../response/successResponse");
+import { Request, Response } from 'express';
+import Task from "../../models/task";
+import { handleUnknownError, successResponse } from "../../response";
 
-const updateTask = async (req, res) => {
-    const userId = req.user._id
+interface UpdateTaskBody {
+    title: string;
+    description: string;
+    completed: boolean;
+}
+
+
+export const updateTask = async (req: Request, res: Response): Promise<void> => {
+    const userId = req?.user?._id
     const taskId = req.params.id
 
-    const updateValues = Object.keys(req.body)
+    const body: UpdateTaskBody = req.body
+
+    const updateValues = Object.keys(body)
     const allowedUpdates = ['title', 'description', 'completed']
 
     try {
@@ -20,17 +29,14 @@ const updateTask = async (req, res) => {
         if (!task)
             throw new Error('Esta tarea no existe')
 
-        updateValues.forEach(key => task[key] = req.body[key])
-        task.lastUpdatedAt = Date.now();
+        updateValues.forEach(key => (task as any)[key] = req.body[key])
+        task.lastUpdatedAt = new Date();
 
         await task.save()
 
         const { response } = successResponse({ data: task, message: 'Tarea actualizada con éxito' })
         res.json(response);
     } catch (error) {
-        const { response } = errorResponse({ message: error.message, statusCode: res.statusCode })
-        res.json(response);
+        handleUnknownError({ error, res, })
     }
 }
-
-module.exports = updateTask

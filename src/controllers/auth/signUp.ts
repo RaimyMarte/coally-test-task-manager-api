@@ -1,10 +1,17 @@
-const User = require("../../models/user")
-const errorResponse = require("../../response/errorResponse")
-const successResponse = require("../../response/successResponse")
+import { Request, Response } from 'express';
+import { handleUnknownError, successResponse } from "../../response";
+import User from '../../models/user';
 
-const signUp = async (req, res) => {
+interface SignUpBody {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export const signUp = async (req: Request, res: Response): Promise<void> => {
     const user = new User(req.body)
-    const { email, password, confirmPassword } = req.body
+    const { email, password, confirmPassword }: SignUpBody = req.body
 
     try {
         const formattedEmail = email.toLowerCase().trim()
@@ -24,9 +31,6 @@ const signUp = async (req, res) => {
         })
         res.json(response);
     } catch (error) {
-        const { response } = errorResponse({ message: error.message, statusCode: res.statusCode })
-        res.json(response);
+        handleUnknownError({ error, res, })
     }
 }
-
-module.exports = signUp
