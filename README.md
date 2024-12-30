@@ -14,6 +14,7 @@ Este es una api de gestión de tareas realizado en NodeJs. Incluye ejemplos de r
 Primero, clona el repositorio en tu máquina local:
 
 git clone https://github.com/RaimyMarte/coally-test-task-manager-api.git
+
 cd coally-test-task-manager-api
 
 ### 2. Instalar las dependencias
@@ -29,9 +30,13 @@ Esto instalará todos los paquetes listados en el archivo package.json.
 Asegúrate de tener un archivo .env en la raíz de tu proyecto. Este archivo debe contener las siguientes variables de entorno, entre otras, según tu configuración:
 
 API_KEY=f4a6594f-ae969f98c674
+
 DB_CONFIG_URL=mongodb+srv://raimy241:oBXEHF1RVgaeAD5X@task-manager.m3aqm.mongodb.net/
+
 SECRET_JWT_KEY=1go8ayf48lk02s0b5
+
 PORT=3010
+
 API_URL=http://localhost:3010
 
 ### 4. Iniciar el servidor
