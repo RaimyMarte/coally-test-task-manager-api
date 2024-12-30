@@ -15,6 +15,6 @@ export const handleUnknownError = ({ error, res, title, statusCode }: HandleUnkn
     const { response } = errorResponse({ title, message: error.message, statusCode: statusCode || res.statusCode });
     res.json(response);
   } else {
-    res.status(500).json({ message: 'Error interno del servidor' });
+    res.status(500).json({ message: 'Ocurrió un error en el servidor, intente más tarde.' });
   }
 };

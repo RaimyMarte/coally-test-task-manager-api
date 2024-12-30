@@ -40,5 +40,5 @@ export const swaggerOptions: SwaggerOptions = {
             },
         ],
     },
-    apis: ['./src/docs/*.swagger.js'],
+    apis: ['./src/docs/*.swagger.ts'],
 };

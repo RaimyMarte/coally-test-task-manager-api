@@ -25,8 +25,12 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
 
         await user.save()
 
+        const filteredUser = user.toObject() as { password?: string; tokens?: string[]; _id: string; [key: string]: any };
+        filteredUser.password = undefined;
+        filteredUser.tokens = undefined;
+        
         const { response } = successResponse({
-            data: user,
+            data: filteredUser,
             message: 'Registro exitoso'
         })
         res.json(response);
