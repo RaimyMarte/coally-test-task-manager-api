@@ -2,6 +2,10 @@
 
 Este es una api de gestión de tareas realizado en NodeJs. Incluye ejemplos de rutas, configuración de base de datos y documentación con Swagger para la API.
 
+## Aplicación desplegada en
+
+https://coally-test-task-manager-api.onrender.com/
+
 ## Requisitos
 
 - [Node.js](https://nodejs.org/) (recomendado: LTS)
@@ -50,5 +54,7 @@ Esto ejecutará el servidor en el puerto que hayas configurado en el archivo .en
 ### 5. Documentación de la API con Swagger
 
 Este proyecto incluye Swagger para documentar la API. Una vez que el servidor esté en funcionamiento, puedes acceder a la documentación de la API en la siguiente URL:
+
+https://coally-test-task-manager-api.onrender.com/api-docs/
 
 http://localhost:3010/api-docs
