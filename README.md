@@ -1,6 +1,6 @@
 # Proyecto Node.js
 
-Este es una api de gestión de tareas realizado en NodeJs. Incluye ejemplos de rutas, configuración de base de datos y documentación con Swagger para la API.
+Este es una API de gestión de tareas realizada en Node.js y TypeScript.
 
 ## Aplicación desplegada en
 
